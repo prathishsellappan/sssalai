@@ -142,7 +142,13 @@ function getPersistedProfiles(): Profile[] {
   const raw = safeStorage.getItem('school_portal_demo_profiles');
   if (!raw) return [...DEFAULT_PROFILES];
   try {
-    return JSON.parse(raw);
+    const list: Profile[] = JSON.parse(raw);
+    for (const dp of DEFAULT_PROFILES) {
+      if (!list.some((p) => p.email.toLowerCase() === dp.email.toLowerCase())) {
+        list.push(dp);
+      }
+    }
+    return list;
   } catch {
     return [...DEFAULT_PROFILES];
   }
@@ -819,7 +825,7 @@ export const mockSupabase = {
           if (!blob) {
             const fileName = filePath.split('/').pop() || 'study-material.pdf';
             const fallbackBytes = generateFallbackPdf(fileName);
-            blob = new Blob([fallbackBytes], { type: 'application/pdf' });
+            blob = new Blob([fallbackBytes as any], { type: 'application/pdf' });
           }
 
           let signedUrl = '';
