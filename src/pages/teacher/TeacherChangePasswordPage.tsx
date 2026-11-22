@@ -38,13 +38,18 @@ export const TeacherChangePasswordPage: React.FC = () => {
 
       if (updateAuthErr) throw updateAuthErr;
 
-      // 2. Clear must_change_password flag on profile
-      const targetUserId = user?.id || (await supabase.auth.getSession()).data.session?.user?.id;
-      if (targetUserId) {
-        await supabase
-          .from('profiles')
-          .update({ must_change_password: false })
-          .eq('id', targetUserId);
+      // 2. Clear must_change_password flag on profile via secure RPC or direct update
+      const { error: rpcErr } = await supabase.rpc('complete_first_time_password_change');
+      if (rpcErr) {
+        console.warn('RPC complete_first_time_password_change fallback:', rpcErr);
+        const targetUserId = user?.id || (await supabase.auth.getSession()).data.session?.user?.id;
+        if (targetUserId) {
+          const { error: updateProfileErr } = await supabase
+            .from('profiles')
+            .update({ must_change_password: false })
+            .eq('id', targetUserId);
+          if (updateProfileErr) console.error('Profile flag update error:', updateProfileErr);
+        }
       }
 
       const updatedProfile = await refreshProfile();
