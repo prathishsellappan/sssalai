@@ -13,27 +13,27 @@ VALUES (
 ON CONFLICT (id) DO NOTHING;
 
 -- 2. Insert Standard Academic Classes (Class 6 through Class 12)
-INSERT INTO public.classes (id, name, display_order, is_active)
+INSERT INTO public.classes (name, display_order, is_active)
 VALUES
-    ('c6000000-0000-0000-0000-000000000006', 'Class 6', 1, TRUE),
-    ('c7000000-0000-0000-0000-000000000007', 'Class 7', 2, TRUE),
-    ('c8000000-0000-0000-0000-000000000008', 'Class 8', 3, TRUE),
-    ('c9000000-0000-0000-0000-000000000009', 'Class 9', 4, TRUE),
-    ('ca000000-0000-0000-0000-000000000010', 'Class 10', 5, TRUE),
-    ('cb000000-0000-0000-0000-000000000011', 'Class 11', 6, TRUE),
-    ('cc000000-0000-0000-0000-000000000012', 'Class 12', 7, TRUE)
+    ('Class 6', 1, TRUE),
+    ('Class 7', 2, TRUE),
+    ('Class 8', 3, TRUE),
+    ('Class 9', 4, TRUE),
+    ('Class 10', 5, TRUE),
+    ('Class 11', 6, TRUE),
+    ('Class 12', 7, TRUE)
 ON CONFLICT (name) DO NOTHING;
 
 -- 3. Insert Common Academic Subjects
-INSERT INTO public.subjects (id, name, is_active)
+INSERT INTO public.subjects (name, is_active)
 VALUES
-    ('s1000000-0000-0000-0000-000000000001', 'Mathematics', TRUE),
-    ('s2000000-0000-0000-0000-000000000002', 'Physics', TRUE),
-    ('s3000000-0000-0000-0000-000000000003', 'Chemistry', TRUE),
-    ('s4000000-0000-0000-0000-000000000004', 'Biology', TRUE),
-    ('s5000000-0000-0000-0000-000000000005', 'English', TRUE),
-    ('s6000000-0000-0000-0000-000000000006', 'Computer Science', TRUE),
-    ('s7000000-0000-0000-0000-000000000007', 'Social Studies', TRUE)
+    ('Mathematics', TRUE),
+    ('Physics', TRUE),
+    ('Chemistry', TRUE),
+    ('Biology', TRUE),
+    ('English', TRUE),
+    ('Computer Science', TRUE),
+    ('Social Studies', TRUE)
 ON CONFLICT (name) DO NOTHING;
 
 -- 4. Map Subjects to Classes
