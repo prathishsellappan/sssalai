@@ -66,6 +66,7 @@ const safeStorage = {
 // ==========================================
 const DEFAULT_DEMO_PASSWORDS: Record<string, string> = {
   'admin@school.example': 'MasterAdminSecurePassword123!',
+  'sssalai@gmail.com': 'sssalai@1234',
   'students@school.example': 'StudentLabAccess2026!',
   'teacher@school.example': 'TeacherPassword123!',
 };
@@ -102,6 +103,15 @@ const DEFAULT_PROFILES: Profile[] = [
   {
     id: 'a0000000-0000-0000-0000-000000000001',
     email: 'admin@school.example',
+    display_name: 'System Administrator',
+    role: 'admin',
+    is_active: true,
+    must_change_password: false,
+    created_at: new Date().toISOString(),
+  },
+  {
+    id: 'a0000000-0000-0000-0000-000000000009',
+    email: 'sssalai@gmail.com',
     display_name: 'System Administrator',
     role: 'admin',
     is_active: true,
