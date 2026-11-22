@@ -80,8 +80,7 @@ Install the Supabase CLI and deploy the 5 server-side functions:
 supabase login
 supabase link --project-ref <your-project-id>
 
-# Set Edge Function Secrets
-supabase secrets set SUPABASE_SERVICE_ROLE_KEY=<service-role-key>
+# Set Edge Function Secrets (SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are automatically injected by Supabase)
 supabase secrets set STUDENT_AUTH_USER_ID=b0000000-0000-0000-0000-000000000002
 
 # Deploy Functions
